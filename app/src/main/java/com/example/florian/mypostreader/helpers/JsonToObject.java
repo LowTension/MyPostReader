@@ -36,4 +36,15 @@ public class JsonToObject {
         }
         return  result;
     }
+
+    public Post JsonToPost(String input) {
+        Post result = null;
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            result  = mapper.readValue(input, Post.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return  result;
+    }
 }

@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.florian.mypostreader.R;
@@ -33,8 +34,8 @@ public class PostAdapter extends ArrayAdapter<Post> {
         PostViewHolder viewHolder = (PostViewHolder) convertView.getTag();
         if(viewHolder == null){
             viewHolder = new PostViewHolder();
-            viewHolder.user = (TextView) convertView.findViewById(R.id.user);
-            viewHolder.title = (TextView) convertView.findViewById(R.id.title);
+            viewHolder.user = convertView.findViewById(R.id.user);
+            viewHolder.title = convertView.findViewById(R.id.title);
             convertView.setTag(viewHolder);
         }
 
@@ -44,6 +45,7 @@ public class PostAdapter extends ArrayAdapter<Post> {
         //il ne reste plus qu'à remplir notre vue
         viewHolder.user.setText(post.user.username);
         viewHolder.title.setText(post.title);
+        viewHolder.user.setTag(post.userId);
 
         return convertView;
     }

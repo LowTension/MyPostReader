@@ -84,4 +84,17 @@ public class DataAccess extends AsyncTask<String, Void, String> {
         }
         return user;
     }
+
+    public Post getPost(String url) {
+        Post post = null;
+        try {
+            post = new JsonToObject().JsonToPost(new DataAccess().execute(url).get());
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        post.user  =  new DataAccess().getUser("https://jsonplaceholder.typicode.com/users/"+post.userId);
+        return post;
+    }
 }
